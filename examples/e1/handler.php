@@ -13,7 +13,7 @@ $pp->validate(function($validator)
 {
 	$validator->field('name1')->isRequired();
 
-})->sendEmailTo('prasanthmj@gmail.com');
+})->sendEmailTo('someone@gmail.com');
 
 
 echo $pp->process($_POST);

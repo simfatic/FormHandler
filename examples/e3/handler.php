@@ -14,7 +14,7 @@ $pp->validate(function($validator)
 	$validator->field('name')->isRequired();
 	$validator->field('email')->isEmail()->isRequired();
 
-})->useMailTemplate(__DIR__.'/templ/email.html')->sendEmailTo('prasanthmj@gmail.com');
+})->useMailTemplate(__DIR__.'/templ/email.html')->sendEmailTo('someone@gmail.com');
 
 
 echo $pp->process($_POST);

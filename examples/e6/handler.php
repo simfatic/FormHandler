@@ -19,7 +19,7 @@ $pp->validate(function($validator)
 {
 	$mailer->setFrom('someone@form.guide','Form',false);
 	
-})->sendEmailTo('prasanthmj@gmail.com');
+})->sendEmailTo('someone@gmail.com');
 
 
 echo $pp->process($_POST);

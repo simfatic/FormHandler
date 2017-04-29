@@ -17,7 +17,7 @@ try
 		$validator->field('email')->isEmail()->isRequired();
 
 	})->attachFiles(['image'])
-	->sendEmailTo('prasanthmj@gmail.com');
+	->sendEmailTo('someone@gmail.com');
 
 	$res = json_decode($pp->process($_POST));
 	if($res->result == 'success')

@@ -15,7 +15,7 @@ $pp->validate(function($validator)
 	$validator->field('name')->isRequired();
 	$validator->field('email')->isEmail()->isRequired();
 
-})->sendEmailTo('prasanthmj@gmail.com');
+})->sendEmailTo('someone@gmail.com');
 
 
 echo $pp->process($_POST);
