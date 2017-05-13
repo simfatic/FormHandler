@@ -17,7 +17,7 @@ $pp->validate(function($validator)
 
 })->configMailer(function($mailer)
 {
-	$mailer->setFrom('someone@form.guide','Form',false);
+	$mailer->setFrom('someone@yourwebsite.com','Form',false);
 	
 })->sendEmailTo('someone@gmail.com');
 

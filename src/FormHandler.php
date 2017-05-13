@@ -4,6 +4,9 @@ use FormGuide\PHPFormValidator\FormValidator;
 use PHPMailer;
 use FormGuide\Handlx\Microtemplate;
 use Gregwar\Captcha\CaptchaBuilder;
+use Twig_Loader_Filesystem;
+use Twig_Environment;
+
 /**
  * FormHandler 
  *  A wrapper class that handles common form handling tasks
@@ -229,14 +232,20 @@ class FormHandler
 		if(!empty($this->mail_template))
 		{
 			$this->mailer->isHTML(true); 
-			$this->mailer->Body =  Microtemplate::render($this->mail_template,['post'=>$post]);
+			$loader = new Twig_Loader_Filesystem(dirname($this->mail_template));
+			$twig = new Twig_Environment($loader);
+
+			$this->mailer->Body = $twig->render(basename($this->mail_template), array(
+			    'post' => $post
+			));
 		}
 		else
 		{
-			$content = "Form submission: \n";
+			$content = "Form submission: \n\n";
 			foreach($post as $name=>$value)
 			{
-				$content .= "$name: $value\n";
+				$content .= ucwords($name).":\n";
+				$content .= "$value\n\n";
 			}
 			$this->mailer->Body  = $content;
 		}

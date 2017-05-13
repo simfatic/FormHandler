@@ -20,6 +20,7 @@ try
 	->configMailer(function($mailer)
 	{
 		$mailer->setFrom('someone@form.guide','Form',false);
+	
 		
 	})->sendEmailTo('someone@gmail.com');
 

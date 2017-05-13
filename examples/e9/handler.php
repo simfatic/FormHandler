@@ -15,7 +15,11 @@ $pp->validate(function($validator)
 	$validator->field('name')->isRequired();
 	$validator->field('email')->isEmail()->isRequired();
 
-})->useMailTemplate(__DIR__.'/templ/email.php')->sendEmailTo('someone@gmail.com');
+})->configMailer(function($mailer)
+{
+	$mailer->setFrom('someone@form.guide','Form',false);
+
+})->useMailTemplate(__DIR__.'/templ/email.html')->sendEmailTo('someone@gmail.com');
 
 
 echo $pp->process($_POST);
