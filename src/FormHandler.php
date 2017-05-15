@@ -35,6 +35,7 @@ class FormHandler
 	private $mail_template;
 	private $captcha;
 	private $attachments;
+	private $recaptcha;
 
 	public function __construct()
 	{
@@ -52,6 +53,9 @@ class FormHandler
    		$this->captcha = false;   
 
    		$this->attachments = [];
+
+   		$this->recaptcha =null;
+
 
 	}
 
@@ -105,6 +109,14 @@ class FormHandler
 		return $this;
 	}
 
+	public function requireReCaptcha($config_fn)
+	{
+		$this->recaptcha = new ReCaptchaValidator();
+		$this->recaptcha->enable(true);
+		$config_fn($this->recaptcha);
+		return $this;
+	}
+
 	public function requireCaptcha($enable=true)
 	{
 		$this->captcha = $enable;
@@ -140,6 +152,17 @@ class FormHandler
 			if($res !== true)
 			{
 				return $res;
+			}
+		}
+		if($this->recaptcha !== null &&
+		   $this->recaptcha->isEnabled())
+		{
+			if($this->recaptcha->validate() !== true)
+			{
+				return json_encode([
+				'result'=>'recaptcha_validation_failed',
+				'errors'=>['captcha'=>'ReCaptcha Validation Failed.']
+				]);
 			}
 		}
 
@@ -203,6 +226,7 @@ class FormHandler
 		}
 		return true;
 	}
+
 
 	private function attach_files()
 	{
