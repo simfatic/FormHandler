@@ -4,8 +4,6 @@ use FormGuide\PHPFormValidator\FormValidator;
 use PHPMailer;
 use FormGuide\Handlx\Microtemplate;
 use Gregwar\Captcha\CaptchaBuilder;
-use Twig_Loader_Filesystem;
-use Twig_Environment;
 
 /**
  * FormHandler 
@@ -253,25 +251,12 @@ class FormHandler
 
 	private function compose_mail($post)
 	{
-		if(!empty($this->mail_template))
+		$content = "Form submission: \n\n";
+		foreach($post as $name=>$value)
 		{
-			$this->mailer->isHTML(true); 
-			$loader = new Twig_Loader_Filesystem(dirname($this->mail_template));
-			$twig = new Twig_Environment($loader);
-
-			$this->mailer->Body = $twig->render(basename($this->mail_template), array(
-			    'post' => $post
-			));
+			$content .= ucwords($name).":\n";
+			$content .= "$value\n\n";
 		}
-		else
-		{
-			$content = "Form submission: \n\n";
-			foreach($post as $name=>$value)
-			{
-				$content .= ucwords($name).":\n";
-				$content .= "$value\n\n";
-			}
-			$this->mailer->Body  = $content;
-		}
+		$this->mailer->Body  = $content;
 	}
 }

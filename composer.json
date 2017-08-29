@@ -5,8 +5,7 @@
         "php": ">=5.4.3",
         "phpmailer/phpmailer": "^5.2",
         "gregwar/captcha": "^1.1",
-        "FormGuide/PHPFormValidator":"^1.0",
-        "twig/twig": "^2.3"
+        "FormGuide/PHPFormValidator":"^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
