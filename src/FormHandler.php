@@ -107,12 +107,19 @@ class FormHandler
 		return $this;
 	}
 
-	public function requireReCaptcha($config_fn)
+	public function requireReCaptcha($config_fn=null)
 	{
 		$this->recaptcha = new ReCaptchaValidator();
 		$this->recaptcha->enable(true);
-		$config_fn($this->recaptcha);
+		if($config_fn)
+		{
+			$config_fn($this->recaptcha);	
+		}
 		return $this;
+	}
+	public function getReCaptcha()
+	{
+		return $this->recaptcha;
 	}
 
 	public function requireCaptcha($enable=true)
