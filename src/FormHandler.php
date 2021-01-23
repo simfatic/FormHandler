@@ -1,7 +1,7 @@
 <?php
 namespace FormGuide\Handlx;
 use FormGuide\PHPFormValidator\FormValidator;
-use PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 use FormGuide\Handlx\Microtemplate;
 use Gregwar\Captcha\CaptchaBuilder;
 

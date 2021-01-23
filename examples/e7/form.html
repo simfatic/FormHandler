@@ -21,6 +21,7 @@
         $.post( 'handler.php', $('form#contact_form').serialize(), 
             function(data) 
               {
+                $('#error_message').hide();
                 if(data.result == 'success')
                 {
                     $('form#contact_form').hide();

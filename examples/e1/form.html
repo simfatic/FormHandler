@@ -15,7 +15,7 @@ $(function()
 {
 	$('#contact_form').submit(function(e)
 	{
-		e.preventDefault();
+        e.preventDefault();
 		$.post( 'handler.php', $('form#contact_form').serialize(), 
 		    function(data) 
 		      {
@@ -30,7 +30,11 @@ $(function()
                     
                 }
 		        
-		      },'json');
+              },'json').fail(function(e)
+              {
+                  $('#error_message').html(e.responseText).show();
+                  console.log("error in request ", e)
+              });
 	});
 });
 </script>

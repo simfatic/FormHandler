@@ -11,7 +11,7 @@ $pp = new FormHandler();
 
 $pp->validate(function($validator)
 {
-	$validator->field('name1')->isRequired();
+	$validator->field('name')->isRequired();
 	$validator->field('email')->isEmail()->isRequired();
 
 })->sendEmailTo('someone@gmail.com');
