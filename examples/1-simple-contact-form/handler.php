@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require_once '../../vendor/autoload.php';
 
 
-use FormGuide\Handlx\FormHandler;
+use Simfatic\FormHandler\FormHandler;
 
 $pp = new FormHandler(); 
 

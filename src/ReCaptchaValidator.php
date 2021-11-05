@@ -1,5 +1,5 @@
 <?php
-namespace FormGuide\Handlx;
+namespace Simfatic\FormHandler;
 
 class ReCaptchaValidator
 {

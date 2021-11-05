@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
 $(function()
@@ -19,6 +20,8 @@ $(function()
 		$.post( 'handler.php', $('form#contact_form').serialize(), 
 		    function(data) 
 		      {
+                console.log("response res ", data);
+                
                 if(data.result == 'success')
                 {
                     $('form#contact_form').hide();
@@ -57,7 +60,10 @@ $(function()
                         </div>
                         <div class="form-group">
                             <label for="name"> Message:</label>
-                            <textarea class="form-control" type="textarea" id="message" placeholder="Your Message Here" maxlength="6000" rows="7"></textarea>
+                            <textarea class="form-control" type="textarea" id="message" placeholder="Your Message Here" name="message" maxlength="6000" rows="7"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LfrKRYdAAAAAIGTSBKeYI7UDDei_vLVTteQgz5N"></div>
                         </div>
                         <button type="submit" class="btn btn-lg btn-success pull-right" id="btnContactUs">Post It! &rarr;</button>
                     </form>

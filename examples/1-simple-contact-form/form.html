@@ -4,21 +4,22 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Form 2</title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script>
+        <title>A Contact Form</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"  crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+<script>
 $(function()
 {
 	$('#contact_form').submit(function(e)
 	{
-        e.preventDefault();
+		e.preventDefault();
+        $('#error_message').hide();
 		$.post( 'handler.php', $('form#contact_form').serialize(), 
 		    function(data) 
 		      {
+                console.log("result ", data);
                 if(data.result == 'success')
                 {
                     $('form#contact_form').hide();
@@ -26,23 +27,27 @@ $(function()
                 }
                 else
                 {
+                    $('#error_message').append('<ul></ul>')
+                    jQuery.each(data.errors,function(key,val)
+                    {
+                        $('#error_message ul').append('<li>'+key+':'+val+'</li>');
+                    });
                     $('#error_message').show();
                     
                 }
 		        
-              },'json').fail(function(e)
+		      },'json').fail(function(e)
               {
                   $('#error_message').html(e.responseText).show();
-                  console.log("error in request ", e)
-              });
+              });;
 	});
 });
 </script>
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
                     <h2>Contact Us</h2> Got a question ? Feedback? Awesome! 
                     <p> Send your message in the form below and we will get back to you as early as possible. </p>
                     <form role="form" method="post" id="contact_form">
@@ -60,9 +65,9 @@ $(function()
                         </div>
                         <button type="submit" class="btn btn-lg btn-success pull-right" id="btnContactUs">Post It! &rarr;</button>
                     </form>
-                    <div id="success_message" style="width:100%; height:100%; display:none; "> <h3>Sent your message successfully!</h3> 
+                    <div id="success_message" style="display: none;"> <h3>Sent your message successfully!</h3> 
                     </div>
-                    <div id="error_message" style="width:100%; height:100%; display:none; ">
+                    <div id="error_message" class="text-danger" style="display: none;">
                         <h3>Error</h3>
                         Sorry there was an error sending your form.
 

@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-use FormGuide\Handlx\FormHandler;
+use Simfatic\FormHandler\FormHandler;
 
 class FormHandlerMakingTest extends TestCase
 {

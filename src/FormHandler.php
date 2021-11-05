@@ -1,9 +1,7 @@
 <?php
-namespace FormGuide\Handlx;
-use FormGuide\PHPFormValidator\FormValidator;
+namespace Simfatic\FormHandler;
+use Simfatic\Boar\Boar;
 use PHPMailer\PHPMailer\PHPMailer;
-use FormGuide\Handlx\Microtemplate;
-use Gregwar\Captcha\CaptchaBuilder;
 
 /**
  * FormHandler 
@@ -38,7 +36,7 @@ class FormHandler
 	public function __construct()
 	{
 		$this->emails = array();
-		$this->validator = FormValidator::create();
+		$this->validator = Boar::create();
 		$this->mailer = new PHPMailer;
 		$this->mail_template='';
 
@@ -171,14 +169,13 @@ class FormHandler
 			}
 		}
 
-		$this->validator->test($post_data);
+		$res = $this->validator->validate($post_data);
 
-		//if(false == $this->validator->test($post_data))
-		if($this->validator->hasErrors())
+		if($res->hasErrors())
 		{
 			return json_encode([
 				'result'=>'validation_failed',
-				'errors'=>$this->validator->getErrors(/*associative*/ true)
+				'errors'=>$res->errors
 				]);
 		}
 

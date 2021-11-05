@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require_once '../../vendor/autoload.php';
 
 
-use FormGuide\Handlx\FormHandler;
+use Simfatic\FormHandler\FormHandler;
 
 $pp = new FormHandler(); 
 
@@ -18,7 +18,7 @@ $pp->validate(function($validator)
 })
 ->requireReCaptcha(function($recaptcha)
 {
-	$recaptcha->initSecretKey('your recaptcha secret key');
+	$recaptcha->initSecretKey('6LfrKRYdAAAAALSNDOrEdzHTFSDAC7uWTaO-H_Tw');
 })
 ->configMailer(function($mailer)
 {
