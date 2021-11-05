@@ -18,7 +18,7 @@ $pp->validate(function($validator)
 })
 ->requireReCaptcha(function($recaptcha)
 {
-	$recaptcha->initSecretKey('6LfrKRYdAAAAALSNDOrEdzHTFSDAC7uWTaO-H_Tw');
+	$recaptcha->initSecretKey('xxxxxx');
 })
 ->configMailer(function($mailer)
 {
