@@ -1,7 +1,13 @@
 {
     "name": "simfatic/formhandler",
     "description": "A basic generic form processor in PHP",
-    
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Prasanth Janardanan",
+            "email": "prasanthmj@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Simfatic\\FormHandler\\": "src/"
